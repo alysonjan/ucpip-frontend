@@ -1,0 +1,8 @@
+{
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/(portal)/dashboard/page": "app/(portal)/dashboard/page.js",
+  "/(portal)/admissions/page": "app/(portal)/admissions/page.js",
+  "/(portal)/patients/page": "app/(portal)/patients/page.js",
+  "/(authentication)/signin/page": "app/(authentication)/signin/page.js",
+  "/(authentication)/homepage/page": "app/(authentication)/homepage/page.js"
+}
