@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -7,9 +8,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Swal from "sweetalert2";
-import { useSearchParams } from "next/navigation";
 
 // Define the schema with Zod
 const ForgotPasswordSchema = z.object({
@@ -17,15 +17,14 @@ const ForgotPasswordSchema = z.object({
   confirm_password: z.string(),
 });
 
-export default function UpdatePassword() {
+function UpdatePassword() {
   const router = useRouter();
-  const [errorMessage, setErrorMessage] = useState<string | null>(null); // State to handle error messages
-  const [loading, setLoading] = useState(false); // State for loading status
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
   const searchParams = useSearchParams();
   const [email, setEmail] = useState<string | null>(null);
 
   useEffect(() => {
-    // Get the email query parameter and decode it
     const emailParam = searchParams.get("email");
     if (emailParam) {
       setEmail(decodeURIComponent(emailParam));
@@ -40,12 +39,10 @@ export default function UpdatePassword() {
     },
   });
 
-  // Handle form submission
   const onSubmit = async (data: z.infer<typeof ForgotPasswordSchema>) => {
     setLoading(true);
-    setErrorMessage(null); // Reset the error message
+    setErrorMessage(null);
     try {
-      // Check if passwords match
       if (data.password !== data.confirm_password) {
         setErrorMessage("Password must match!");
         return;
@@ -57,7 +54,6 @@ export default function UpdatePassword() {
         ...data,
       };
 
-      // Send the request to create the password
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/create-password`, {
         method: "POST",
         headers: {
@@ -70,7 +66,6 @@ export default function UpdatePassword() {
       const result = await response.json();
 
       if (response.ok) {
-        console.log("Login successful", result);
         Swal.fire({
           title: "Success!",
           text: "Password created successfully. Go to the login page?",
@@ -99,20 +94,6 @@ export default function UpdatePassword() {
       {errorMessage && <p className="text-red-500">{errorMessage}</p>}
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2 flex flex-col w-96">
-          {/* <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Enter Email</FormLabel>
-                <FormControl>
-                  <Input {...field} value={field.value || ""} />
-                </FormControl>
-                <FormDescription>Enter your registered email address.</FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          /> */}
           <FormField
             control={form.control}
             name="password"
@@ -148,5 +129,14 @@ export default function UpdatePassword() {
         </form>
       </Form>
     </>
+  );
+}
+
+// Wrap the UpdatePassword component in a Suspense boundary
+export default function UpdatePasswordPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <UpdatePassword />
+    </Suspense>
   );
 }
