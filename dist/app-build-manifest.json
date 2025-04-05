@@ -16,15 +16,15 @@
       "static/chunks/main-app.js",
       "static/chunks/app/(authentication)/layout.js"
     ],
-    "/(authentication)/homepage/layout": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(authentication)/homepage/layout.js"
-    ],
     "/(authentication)/homepage/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/(authentication)/homepage/page.js"
+    ],
+    "/(authentication)/homepage/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(authentication)/homepage/layout.js"
     ],
     "/(portal)/layout": [
       "static/chunks/webpack.js",
@@ -41,36 +41,25 @@
       "static/chunks/main-app.js",
       "static/chunks/app/(portal)/dashboard/layout.js"
     ],
-    "/(portal)/patients/layout": [
+    "/(authentication)/signin/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(portal)/patients/layout.js"
-    ],
-    "/(portal)/patients/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(portal)/patients/page.js"
-    ],
-    "/(portal)/admissions/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/(portal)/admissions/page.css",
-      "static/chunks/app/(portal)/admissions/page.js"
-    ],
-    "/(portal)/admissions/layout": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(portal)/admissions/layout.js"
+      "static/chunks/app/(authentication)/signin/layout.js"
     ],
     "/(authentication)/signin/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/(authentication)/signin/page.js"
     ],
-    "/(authentication)/signin/layout": [
+    "/(portal)/patients/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(authentication)/signin/layout.js"
+      "static/chunks/app/(portal)/patients/page.js"
+    ],
+    "/(portal)/patients/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(portal)/patients/layout.js"
     ]
   }
 }

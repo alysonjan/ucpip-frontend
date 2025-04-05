@@ -9,7 +9,6 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Checkbox } from "@/components/ui/checkbox";
 
 // Define the schema with Zod
 const SignInFormSchema = z.object({
