@@ -17,32 +17,33 @@ export async function middleware(request: NextRequest) {
       const secret = new TextEncoder().encode(process.env.JWT_SECRET as string);
       await jwtVerify(token, secret);
 
-      // If the user is authenticated and trying to access /signin, redirect to /dashboard using a 302
+      // If the user is authenticated and trying to access /signin, redirect to /dashboard
       if (pathname === "/signin") {
-        return NextResponse.redirect(new URL("/dashboard", request.url), { status: 302 });
+        return NextResponse.redirect(new URL("/dashboard", request.url));
       }
+
       return NextResponse.next();
     } catch (error) {
       console.error("Token verification failed:", error);
-      // Token verification failed, redirect to /signin using a 302
+      // Token verification failed, redirect to signin
       if (pathname !== "/signin") {
-        return NextResponse.redirect(new URL("/signin", request.url), { status: 302 });
+        return NextResponse.redirect(new URL("/signin", request.url));
       }
     }
   } else {
-    // No token present, redirect to /signin using a 302 if not already there.
+    // No token present
     if (pathname !== "/signin") {
-      return NextResponse.redirect(new URL("/signin", request.url), { status: 302 });
+      return NextResponse.redirect(new URL("/signin", request.url));
     }
   }
 
-  // Allow access to /signin if no token or token verification fails
+  // Allow access to /signin if no token or if the token verification fails
   if (pathname === "/signin") {
     return NextResponse.next();
   }
 
-  // For all other routes, redirect to /signin using a 302 if not authenticated
-  return NextResponse.redirect(new URL("/signin", request.url), { status: 302 });
+  // For all other routes, redirect to signin if not authenticated
+  return NextResponse.redirect(new URL("/signin", request.url));
 }
 
 export const config = {
