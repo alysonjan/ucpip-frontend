@@ -289,33 +289,34 @@ export default function AdmissionsMenu() {
                                 handleStudentChange(selectedOption);
                               }}
                               isClearable
-                              // noOptionsMessage={() => (
-                              //   <div
-                              //     onClick={() => {
-                              //       const newOption = {
-                              //         value: "insert_new",
-                              //         label: "Insert new student?",
-                              //         student_id: "",
-                              //         first_name: "",
-                              //         last_name: "",
-                              //         email: "",
-                              //         sex: "male" as "male" | "female",
-                              //         address: "",
-                              //         date_of_birth: "",
-                              //         contact: "",
-                              //         department: "",
-                              //         smoking: "No" as "No" | "Yes",
-                              //         drinking: "No" as "No" | "Yes",
-                              //         blood_type: "N/A" as "N/A" | "A+",
-                              //       };
-                              //       field.onChange(newOption);
-                              //       handleStudentChange(newOption); // Clear existing fields
-                              //     }}
-                              //     style={{ cursor: "pointer", color: "blue" }}
-                              //   >
-                              //     Insert new student?
-                              //   </div>
-                              // )}
+                              noOptionsMessage={() => (
+                                <div
+                                  onClick={() => {
+                                    const newOption = {
+                                      value: "insert_new",
+                                      label: "Insert new student?",
+                                      student_id: "",
+                                      first_name: "",
+                                      last_name: "",
+                                      email: "",
+                                      sex: "male" as "male" | "female",
+                                      address: "",
+                                      date_of_birth: "",
+                                      contact: "",
+                                      department: "",
+                                      smoking: "No" as "No" | "Yes",
+                                      drinking: "No" as "No" | "Yes",
+                                      blood_type: "N/A" as "N/A" | "A+",
+                                      patient_category: "Normal" as "Normal" | "Alert", // Add a default value for patient_category
+                                    };
+                                    field.onChange(newOption);
+                                    handleStudentChange(newOption); // Clear existing fields
+                                  }}
+                                  style={{ cursor: "pointer", color: "blue" }}
+                                >
+                                  Insert new student?
+                                </div>
+                              )}
                             />
                           </>
                         )}
