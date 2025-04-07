@@ -17,7 +17,7 @@ import { z } from "zod";
 const DocumentFormSchema = z.object({
   student_id: z.string().min(2).max(32),
   doctype: z.enum(["Physical Exam", "Medical Certificate", "Clinical Note", "Referral Form"]),
-  doctor: z.string().min(2).max(32),
+  doctor: z.string(),
 });
 
 const fetchDoctors = async (): Promise<DoctorFormSchema[]> => {
@@ -269,7 +269,7 @@ export default function Documents() {
                         <FormControl>
                           <Select value={field.value || ""} onValueChange={(value) => field.onChange(value)}>
                             <SelectTrigger>
-                              <SelectValue placeholder="Select Department" />
+                              <SelectValue placeholder="Select Doctor" />
                             </SelectTrigger>
                             <SelectContent>
                               {doctors?.map((doctor) => (
